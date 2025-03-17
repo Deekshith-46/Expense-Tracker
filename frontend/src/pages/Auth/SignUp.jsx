@@ -8,8 +8,11 @@ import axiosInstance from '../../utils/axiosInstance';
 import { API_PATHS } from '../../utils/apiPaths';
 import { UserContext } from '../../context/UserContext';
 import uploadImage from '../../utils/uploadImage';
+import { ThemeContext } from '../../context/ThemeContext';
 
 const SignUp = () => {
+  const { theme } = useContext(ThemeContext);
+
   const [profilePic, setProfilePic] = useState(null);
   const [fullName, setFullName] = useState("");
   const [email, setEmail] = useState("");
@@ -75,8 +78,8 @@ const SignUp = () => {
   return (
     <AuthLayout>
         <div className='lg:w-[100%] h-auto md:h-full mt-10 md:mt-0 flex flex-col justify-center'>
-          <h3 className='text-xl font-semibold text-black'>Create an Account</h3>
-          <p className='text-xs text-slate-700 mt-[5px] mb-6'>
+          <h3 className={`text-xl font-semibold ${theme === 'dark' ? 'text-white' : 'text-black'}`}>Create an Account</h3>
+          <p className={`text-xs ${theme === 'dark' ? "text-slate-50" : "text-slate-700"} mt-[5px] mb-6`}>
             Join us today by entering your details below.
           </p>
 
@@ -115,7 +118,7 @@ const SignUp = () => {
             
                       <button type='submit' className='btn-primary cursor-pointer'>SIGN UP</button>
             
-                      <p className='text-[13px] text-slate-800 mt-3'>Already have an account ? {""}
+                      <p className={`text-[13px] ${theme === 'dark' ? "text-slate-50" : "text-slate-800"} mt-3`}>Already have an account ? {""}
                         <Link className="font-medium text-primary underline" to="/login">Login</Link>
                       </p>
           </form>

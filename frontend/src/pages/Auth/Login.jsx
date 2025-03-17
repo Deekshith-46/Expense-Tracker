@@ -1,4 +1,4 @@
-import React, { useContext, useState } from 'react'
+import React, { use, useContext, useState } from 'react'
 import AuthLayout from '../../components/layouts/AuthLayout'
 import { Link, useNavigate } from 'react-router-dom';
 import Input from '../../components/Inputs/Inputs';
@@ -6,8 +6,11 @@ import { validateEmail } from '../../utils/helper';
 import axiosInstance from '../../utils/axiosInstance';
 import { API_PATHS } from '../../utils/apiPaths';
 import { UserContext } from '../../context/UserContext';
+import { ThemeContext } from '../../context/ThemeContext';
 
 const Login = () => {
+  const { theme } = useContext(ThemeContext);
+
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [error, setError] = useState(null);
@@ -57,8 +60,8 @@ const Login = () => {
   return (
     <AuthLayout>
       <div className='lg:w-[70%] h-3/4 md:h-full flex flex-col justify-center'>
-        <h3 className='text-xl font-semibold text-black'>Welcome Back</h3>
-        <p className='text-xs text-slate-700 mt-[5px] mb-6'>Please enter your details to log in</p>
+        <h3 className={`text-xl font-semibold ${theme === 'dark' ? 'text-white' : 'text-black'}`}>Welcome Back</h3>
+        <p className={`text-xs ${theme === 'dark' ? "text-slate-50" : "text-slate-700"} mt-[5px] mb-6`}>Please enter your details to log in</p>
 
         <form onSubmit={handleLogin}>
           <Input
@@ -80,7 +83,7 @@ const Login = () => {
 
           <button type='submit' className='btn-primary cursor-pointer'>LOGIN</button>
 
-          <p className='text-[13px] text-slate-800 mt-3'>Don't have an account ? {""}
+          <p className={`text-[13px] ${theme === 'dark' ? "text-slate-50" : "text-slate-800"} mt-3`}>Don't have an account ? {""}
             <Link className="font-medium text-primary underline" to="/signUp">SignUp</Link>
           </p>
         </form>

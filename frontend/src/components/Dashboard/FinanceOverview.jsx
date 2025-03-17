@@ -16,7 +16,7 @@ const FinanceOverview = ({ totalBalance, totalIncome, totalExpense }) => {
 
     return (
         <div className='card'>
-            <div className='flex items-center justify-center'>
+            <div className='flex items-center '>
                 <h5 className='text-lg'>Financial Overview</h5>
             </div>
 
@@ -25,7 +25,7 @@ const FinanceOverview = ({ totalBalance, totalIncome, totalExpense }) => {
                 label="Total Balance"
                 totalAmount={`$${totalBalance}`}
                 colors={COLORS}
-                showTextAnchor
+                showTextAnchor={true}
             />
         </div>
     );

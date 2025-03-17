@@ -5,10 +5,9 @@ import SideMenu from "./SideMenu"; // Ensure SideMenu is imported correctly
 
 const DashboardLayout = ({ children, activeMenu }) => {
   const { user } = useContext(UserContext); // Get user data from context
-
   return (
     <div className="">
-        
+
       <Navbar activeMenu={activeMenu} />
 
       {user && (

@@ -1,11 +1,19 @@
-import React from 'react'
+import React, { useContext } from 'react'
 import CARD_2 from "../../assets/images/card2.png"
-import {LuTrendingUpDown} from "react-icons/lu"
+import {LuTrendingUpDown} from "react-icons/lu";
+import { ThemeContext } from '../../context/ThemeContext';
+import logo from "../../assets/images/logo.png"
+
 const AuthLayout = ({children}) => {
+    const { theme } = useContext(ThemeContext);
+
   return (
-    <div className='flex'>
-        <div className='w-screen h-screen md:w-[60vw] px-12 pt-8 pb-12'>
-            <h2 className='text-lg font-medium text-black'>Expense Tracker</h2>
+    <div className={`flex ${theme === 'dark' ? 'bg-gray-900' : 'bg-white'}`}>
+        <div className=' w-screen h-screen md:w-[60vw] px-12 pt-8 pb-12'>
+            <div className='flex items-center gap-4 '>
+                <img src={logo} alt="Logo" className='w-12 h-12 rounded-full'/>
+                <h2 className={`text-lg font-medium ${theme === 'dark' ? 'text-white' : 'text-black'}`}>FinTrack</h2>
+            </div>
             {children}
         </div>
 
